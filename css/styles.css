@@ -5,7 +5,9 @@
 }
 
 button {
-  border-radius: 70px;
+  width: 65px;
+  height: 65px;
+  border-radius: 65px;
   border: 1px solid rgb(50, 50, 50);
   font-size: 30px;
   color: rgb(250, 250, 250);
@@ -13,47 +15,46 @@ button {
 }
 
 .container {
-  margin: 25px auto;
-  height: fit-content;
-  width: fit-content;
+  margin: 30px auto;
+  height: 500px;
+  width: 300px;
   background-color: rgb(20, 20, 20);
+  color: rgb(250, 250, 250);
   border-radius: 16px;
   padding: 12px;
-  /* GRID */
-  display: grid;
-  grid-template-columns: repeat(4, 70px);
-  grid-template-rows: 55px 60px repeat(5, 70px);
-  gap: 8px;
+  /* FLEXBOX */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
 }
 
-.result-part,
 .result {
-  grid-column: span 4;
-  color: rgb(250, 250, 250);
-  justify-self: end;
-  align-self: end;
+  height: 110px;
+  width: 272px;
   padding-right: 10px;
+  /* FLEXBOX */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
-.result-part {
+.result-main {
+  font-size: 60px;
+}
+
+.result-small {
   font-size: 22px;
   color: rgb(215, 215, 215);
 }
 
-.result {
-  font-size: 60px;
-}
-
-.top-row {
-  background-color: rgb(180, 180, 180);
-  color: rgb(20, 20, 20);
-}
-
 .operator {
-  background-color: rgb(241, 129, 0);
-  font-size: 35px;
+  color: rgb(242, 255, 0);
 }
 
-.wide {
-  grid-column: span 2;
+.top {
+  color: rgb(0, 238, 255);
 }
