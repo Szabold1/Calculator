@@ -1,6 +1,7 @@
 // VARIABLES
-let displaySmall = document.querySelector(".display-small");
-let displayBig = document.querySelector(".display-big");
+const displaySmall = document.querySelector(".display-small");
+const displayBig = document.querySelector(".display-big");
+const acBtn = document.querySelector(".ac");
 
 let numberBtns = document.querySelectorAll(".num");
 let operatorBtns = document.querySelectorAll(".operator");
@@ -74,4 +75,12 @@ operatorBtns.forEach((op) => {
       displayBig.textContent = "ERROR";
     }
   });
+});
+
+acBtn.addEventListener("click", () => {
+  displaySmall.textContent = "";
+  displayBig.textContent = "";
+  operator = "";
+  previousNumber = "";
+  currentNumber = "";
 });
