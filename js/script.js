@@ -43,7 +43,11 @@ function operate(operator, num1, num2) {
 // EVENT LISTENERS
 numberBtns.forEach((num) => {
   num.addEventListener("click", (e) => {
-    displayBig.textContent += e.target.textContent;
+    if (displayBig.textContent === "0") {
+      displayBig.textContent = e.target.textContent;
+    } else {
+      displayBig.textContent += e.target.textContent;
+    }
     currentNumber = displayBig.textContent;
   });
 });
@@ -79,7 +83,7 @@ operatorBtns.forEach((op) => {
 
 acBtn.addEventListener("click", () => {
   displaySmall.textContent = "";
-  displayBig.textContent = "";
+  displayBig.textContent = "0";
   operator = "";
   previousNumber = "";
   currentNumber = "";
