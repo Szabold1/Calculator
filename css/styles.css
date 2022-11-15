@@ -31,7 +31,7 @@ button {
   gap: 7px;
 }
 
-.result {
+.display {
   height: 110px;
   width: 272px;
   padding-right: 10px;
@@ -42,11 +42,12 @@ button {
   justify-content: flex-end;
 }
 
-.result-main {
+.display-big {
   font-size: 60px;
+  height: 72px;
 }
 
-.result-small {
+.display-small {
   font-size: 22px;
   color: rgb(215, 215, 215);
 }
