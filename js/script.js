@@ -50,10 +50,18 @@ numberBtns.forEach((num) => {
 operatorBtns.forEach((op) => {
   op.addEventListener("click", (e) => {
     if (e.target.textContent !== "=") {
+      if (previousNumber === "") {
+        previousNumber = currentNumber;
+      } else {
+        previousNumber = operate(
+          operator,
+          Number(previousNumber),
+          Number(currentNumber)
+        );
+      }
       operator = e.target.textContent;
-      previousNumber = currentNumber;
-      currentNumber = "";
       displaySmall.textContent = `${previousNumber} ${operator}`;
+      currentNumber = "";
       displayBig.textContent = currentNumber;
     } else if (e.target.textContent === "=") {
       displaySmall.textContent += ` ${currentNumber} ${e.target.textContent}`;
