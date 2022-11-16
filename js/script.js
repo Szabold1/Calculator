@@ -2,6 +2,7 @@
 const displaySmall = document.querySelector(".display-small");
 const displayBig = document.querySelector(".display-big");
 const acBtn = document.querySelector(".ac");
+const plusMinusBtn = document.querySelector(".plus-minus");
 
 let numberBtns = document.querySelectorAll(".num");
 let operatorBtns = document.querySelectorAll(".operator");
@@ -41,6 +42,8 @@ function operate(operator, num1, num2) {
 }
 
 // EVENT LISTENERS
+
+// NUMBER BUTTONS
 numberBtns.forEach((num) => {
   num.addEventListener("click", (e) => {
     if (displayBig.textContent === "0") {
@@ -52,6 +55,7 @@ numberBtns.forEach((num) => {
   });
 });
 
+// OPERATOR BUTTONS
 operatorBtns.forEach((op) => {
   op.addEventListener("click", (e) => {
     if (e.target.textContent !== "=") {
@@ -81,10 +85,17 @@ operatorBtns.forEach((op) => {
   });
 });
 
+// AC BUTTON
 acBtn.addEventListener("click", () => {
   displaySmall.textContent = "";
   displayBig.textContent = "0";
   operator = "";
   previousNumber = "";
   currentNumber = "";
+});
+
+// PLUS - MINUS BUTTON
+plusMinusBtn.addEventListener("click", () => {
+  currentNumber *= -1;
+  displayBig.textContent = currentNumber;
 });
