@@ -3,6 +3,7 @@ const displaySmall = document.querySelector(".display-small");
 const displayBig = document.querySelector(".display-big");
 const acBtn = document.querySelector(".ac");
 const plusMinusBtn = document.querySelector(".plus-minus");
+const decimalPointBtn = document.querySelector(".decimal-point");
 
 const numberBtns = document.querySelectorAll(".num");
 const operatorBtns = document.querySelectorAll(".operator");
@@ -69,6 +70,9 @@ numberBtns.forEach((num) => {
 // OPERATOR BUTTONS
 operatorBtns.forEach((op) => {
   op.addEventListener("click", (e) => {
+    if (currentNumber.endsWith(".")) {
+      currentNumber = currentNumber.slice(0, -1);
+    }
     if (currentNumber !== "") {
       if (previousNumber === "") {
         previousNumber = currentNumber;
@@ -112,5 +116,14 @@ plusMinusBtn.addEventListener("click", () => {
     currentNumber *= -1;
     setResult();
     setDisplays();
+  }
+});
+
+// DECIMAL POINT BUTTON
+decimalPointBtn.addEventListener("click", () => {
+  if (lastBtnClicked === "number" && !currentNumber.includes(".")) {
+    currentNumber += ".";
+    setDisplays();
+    lastBtnClicked = "decimal";
   }
 });
