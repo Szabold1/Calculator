@@ -4,12 +4,16 @@ const displayBig = document.querySelector(".display-big");
 const acBtn = document.querySelector(".ac");
 const plusMinusBtn = document.querySelector(".plus-minus");
 
-let numberBtns = document.querySelectorAll(".num");
-let operatorBtns = document.querySelectorAll(".operator");
+const numberBtns = document.querySelectorAll(".num");
+const operatorBtns = document.querySelectorAll(".operator");
+const equalBtn = document.querySelector(".equal");
 
 let operator = "";
 let previousNumber = "";
 let currentNumber = "";
+let equalSign = "";
+let result = "";
+let lastBtnClicked = "";
 
 // FUNCTIONS
 function add(a, b) {
@@ -41,61 +45,72 @@ function operate(operator, num1, num2) {
   }
 }
 
+function setDisplays() {
+  displaySmall.textContent = `${previousNumber} ${operator} ${currentNumber} ${equalSign}`;
+  displayBig.textContent = result;
+}
+
+function setResult() {
+  result = operate(operator, Number(previousNumber), Number(currentNumber));
+}
+
 // EVENT LISTENERS
 
 // NUMBER BUTTONS
 numberBtns.forEach((num) => {
   num.addEventListener("click", (e) => {
-    if (displayBig.textContent === "0") {
-      displayBig.textContent = e.target.textContent;
-    } else {
-      displayBig.textContent += e.target.textContent;
-    }
-    currentNumber = displayBig.textContent;
+    currentNumber += e.target.textContent;
+    setResult();
+    setDisplays();
+    lastBtnClicked = "number";
   });
 });
 
 // OPERATOR BUTTONS
 operatorBtns.forEach((op) => {
   op.addEventListener("click", (e) => {
-    if (e.target.textContent !== "=") {
+    if (currentNumber !== "") {
       if (previousNumber === "") {
         previousNumber = currentNumber;
+        currentNumber = "";
       } else {
-        previousNumber = operate(
-          operator,
-          Number(previousNumber),
-          Number(currentNumber)
-        );
+        setResult();
+        previousNumber = result;
+        result = "";
+        currentNumber = "";
       }
+      equalSign = "";
       operator = e.target.textContent;
-      displaySmall.textContent = `${previousNumber} ${operator}`;
-      currentNumber = "";
-      displayBig.textContent = currentNumber;
-    } else if (e.target.textContent === "=") {
-      displaySmall.textContent += ` ${currentNumber} ${e.target.textContent}`;
-      displayBig.textContent = operate(
-        operator,
-        Number(previousNumber),
-        Number(currentNumber)
-      );
-    } else {
-      displayBig.textContent = "ERROR";
+      setDisplays();
+      lastBtnClicked = "operator";
     }
   });
 });
 
+// EQUAL BUTTON
+equalBtn.addEventListener("click", (e) => {
+  equalSign = e.target.textContent;
+  setResult();
+  setDisplays();
+  lastBtnClicked = "equal";
+});
+
 // AC BUTTON
 acBtn.addEventListener("click", () => {
-  displaySmall.textContent = "";
-  displayBig.textContent = "0";
-  operator = "";
   previousNumber = "";
+  operator = "";
   currentNumber = "";
+  equalSign = "";
+  result = "";
+  lastBtnClicked = "";
+  setDisplays();
 });
 
 // PLUS - MINUS BUTTON
 plusMinusBtn.addEventListener("click", () => {
-  currentNumber *= -1;
-  displayBig.textContent = currentNumber;
+  if (lastBtnClicked === "number") {
+    currentNumber *= -1;
+    setResult();
+    setDisplays();
+  }
 });
