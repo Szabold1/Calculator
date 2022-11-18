@@ -93,10 +93,12 @@ operatorBtns.forEach((op) => {
 
 // EQUAL BUTTON
 equalBtn.addEventListener("click", (e) => {
-  equalSign = e.target.textContent;
-  setResult();
-  setDisplays();
-  lastBtnClicked = "equal";
+  if (currentNumber && previousNumber) {
+    equalSign = e.target.textContent;
+    setResult();
+    setDisplays();
+    lastBtnClicked = "equal";
+  }
 });
 
 // AC BUTTON
