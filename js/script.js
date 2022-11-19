@@ -73,7 +73,7 @@ numberBtns.forEach((num) => {
 // OPERATOR BUTTONS
 operatorBtns.forEach((op) => {
   op.addEventListener("click", (e) => {
-    if (currentNumber.endsWith(".")) {
+    if (currentNumber.toString().endsWith(".")) {
       currentNumber = currentNumber.slice(0, -1);
     }
     if (currentNumber !== "") {
@@ -126,7 +126,7 @@ plusMinusBtn.addEventListener("click", () => {
 
 // DECIMAL POINT BUTTON
 decimalPointBtn.addEventListener("click", () => {
-  if (lastBtnClicked === "number" && !currentNumber.includes(".")) {
+  if (lastBtnClicked === "number" && !currentNumber.toString().includes(".")) {
     currentNumber += ".";
     setDisplays();
     lastBtnClicked = "decimal";

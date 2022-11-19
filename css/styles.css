@@ -52,7 +52,8 @@ button {
   color: rgb(215, 215, 215);
 }
 
-.operator {
+.operator,
+.equal {
   color: rgb(242, 255, 0);
 }
 
