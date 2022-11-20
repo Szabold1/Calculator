@@ -3,6 +3,7 @@ const displaySmall = document.querySelector(".display-small");
 const displayBig = document.querySelector(".display-big");
 const acBtn = document.querySelector(".ac");
 const plusMinusBtn = document.querySelector(".plus-minus");
+const percentBtn = document.querySelector(".percent");
 const decimalPointBtn = document.querySelector(".decimal-point");
 
 const numberBtns = document.querySelectorAll(".num");
@@ -133,6 +134,17 @@ plusMinusBtn.addEventListener("click", () => {
     currentNumber *= -1;
     setResult();
     currentNumber += ".";
+    setDisplays();
+  }
+});
+
+percentBtn.addEventListener("click", () => {
+  if (lastBtnClicked === "number" || lastBtnClicked === "decimal") {
+    if (currentNumber.toString().endsWith(".")) {
+      currentNumber = currentNumber.slice(0, -1);
+    }
+    currentNumber /= 100;
+    setResult();
     setDisplays();
   }
 });
