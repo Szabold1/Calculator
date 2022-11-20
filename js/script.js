@@ -56,6 +56,13 @@ function setResult() {
   if (typeof result === "number" && !Number.isInteger(result)) {
     result = Math.round((result + Number.EPSILON) * 1000) / 1000;
   }
+  if (
+    result === Infinity ||
+    result === -Infinity ||
+    previousNumber === "Error"
+  ) {
+    result = "Error";
+  }
 }
 
 // EVENT LISTENERS
