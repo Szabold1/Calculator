@@ -122,6 +122,12 @@ plusMinusBtn.addEventListener("click", () => {
     setResult();
     setDisplays();
   }
+  if (lastBtnClicked === "decimal") {
+    currentNumber *= -1;
+    setResult();
+    currentNumber += ".";
+    setDisplays();
+  }
 });
 
 // DECIMAL POINT BUTTON
