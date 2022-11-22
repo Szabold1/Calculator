@@ -54,13 +54,18 @@ function setDisplays() {
 
 function setResult() {
   result = operate(operator, Number(previousNumber), Number(currentNumber));
-  if (typeof result === "number" && !Number.isInteger(result)) {
+
+  if (result === undefined) {
+    result = currentNumber;
+  } else if (!Number.isInteger(result)) {
     result = Math.round((result + Number.EPSILON) * 1000) / 1000;
   }
+
   if (
     result === Infinity ||
     result === -Infinity ||
-    previousNumber === "Error"
+    previousNumber === "Error" ||
+    result.toString().length > 9
   ) {
     result = "Error";
   }
